@@ -1,46 +1,39 @@
 ﻿"use client";
-import React, { useState, useEffect } from "react";
-import StarRating from "../components/StarRating";
+
+import React, { useEffect, useState } from "react";
 
 export default function Page() {
-  const [rating, setRating] = useState(0);
-  const [average, setAverage] = useState(null);
-  const [count, setCount] = useState(0);
-
-  const resourceType = "restaurant";
-  const resourceId = "123";
+  const [rating, setRating] = useState<number>(0);
 
   useEffect(() => {
-    fetch(`/api/ratings/${resourceType}/${resourceId}`)
-      .then((r) => r.json())
-      .then((data) => {
-        setAverage(data.average);
-        setCount(data.count);
-        if (data.average) setRating(Math.round(data.average));
-      });
+    // any startup logic you had can remain here
   }, []);
 
-  function submitRating(v) {
+  function submitRating(v: number) {
     setRating(v);
+
     fetch("/api/ratings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ resourceType, resourceId, score: v })
-    })
-      .then(() => fetch(`/api/ratings/${resourceType}/${resourceId}`))
-      .then((r) => r.json())
-      .then((data) => {
-        setAverage(data.average);
-        setCount(data.count);
-      });
+      body: JSON.stringify({ rating: v }),
+    }).catch(() => {
+      // network error ignored
+    });
   }
 
   return (
-    <div style={{ padding: 40 }}>
-      <h2>Star Rating Test</h2>
-      <StarRating value={rating} onChange={submitRating} readOnly={false} />
-      <p style={{ marginTop: 20 }}>Current rating: {rating}</p>
-      <p>Average: {average ?? "—"} ({count} votes)</p>
-    </div>
+    <main style={{ padding: 24 }}>
+      <h1>Around You</h1>
+
+      <p>Current rating: {rating}</p>
+
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={() => submitRating(1)}>Rate 1</button>
+        <button onClick={() => submitRating(2)}>Rate 2</button>
+        <button onClick={() => submitRating(3)}>Rate 3</button>
+        <button onClick={() => submitRating(4)}>Rate 4</button>
+        <button onClick={() => submitRating(5)}>Rate 5</button>
+      </div>
+    </main>
   );
 }
