@@ -1,3 +1,4 @@
+﻿import { Check } from 'lucide-react';
 import { useState, useEffect } from "react";
 import { ChevronDown, Globe, Mail, Phone, ExternalLink, Music, MapPin, Loader2, Copy, Edit, Trash2, ChevronRight, Search, Plus, X, Download, Printer } from 'app/lib/icons';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -587,3 +588,4 @@ export default function AccommodationForm({ accommodation, onClose }: Accommodat
     </Card>
   );
 }
+

@@ -1,3 +1,4 @@
+﻿import { Check } from 'lucide-react';
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -286,3 +287,4 @@ export default function AccommodationList({ accommodations, onEdit, onUpdate }: 
     </div>
   );
 }
+

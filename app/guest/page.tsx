@@ -1,3 +1,4 @@
+﻿import { Navigation } from 'lucide-react';
 "use client";
 
 import { useEffect, useState } from "react";
@@ -236,3 +237,4 @@ function Filter({ label, value, onChange }: FilterProps) {
     </div>
   );
 }
+

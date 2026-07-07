@@ -1,3 +1,4 @@
+﻿import { Upload, ImageIcon } from 'lucide-react';
 import { useState, useRef, useCallback, useEffect } from "react";
 import { ChevronDown, Globe, Mail, Phone, ExternalLink, Music, MapPin, Loader2, Copy, Edit, Trash2, ChevronRight, Search, Plus, X, Download, Printer } from 'app/lib/icons';
 import { Label } from "@/components/ui/label";
@@ -269,4 +270,5 @@ export default function ImageUpload({
     </div>
   );
 }
+
 

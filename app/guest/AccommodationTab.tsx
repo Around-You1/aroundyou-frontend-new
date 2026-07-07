@@ -1,3 +1,4 @@
+﻿import { Upload, FileText } from 'lucide-react';
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -204,5 +205,6 @@ export default function AccommodationTab({ onUpdate }: AccommodationTabProps) {
     </div>
   );
 }
+
 
 

@@ -1,3 +1,4 @@
+﻿import { Instagram, Twitter, Youtube } from 'lucide-react';
 import { useEffect, useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Globe, Mail, Phone, ExternalLink, Music, MapPin, Loader2, Copy, Edit, Trash2, ChevronRight, Search, Plus, X, Download, Printer } from 'app/lib/icons';
@@ -109,5 +110,6 @@ export default function BookingsSocialsDropdowns({ triggerClass, contentClass }:
     </>
   );
 }
+
 
 

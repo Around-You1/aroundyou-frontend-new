@@ -1,3 +1,4 @@
+﻿import { Upload, FileText, Eye, EyeOff, Tag, Instagram, Twitter, Youtube, Check, RefreshCw, Store, Building2, Compass, LogOut, Baby, Navigation, Shield, ImageIcon } from 'lucide-react';
 /* icons.tsx — safe permissive barrel (replace placeholders with real icon components) */
 export const Upload: any = (props: any) => null;
 export const FileText: any = (props: any) => null;

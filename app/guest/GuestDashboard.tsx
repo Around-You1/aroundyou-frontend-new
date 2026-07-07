@@ -1,3 +1,4 @@
+﻿import { Eye, EyeOff, Tag, Instagram, Twitter, Youtube, Check } from 'lucide-react';
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -1204,4 +1205,5 @@ export default function GuestDashboard() {
     </div>
   );
 }
+
 
