@@ -1,39 +1,34 @@
 ﻿"use client";
+export const dynamic = "force-dynamic";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
-export default function Page() {
-  const [rating, setRating] = useState<number>(0);
-
-  useEffect(() => {
-    // any startup logic you had can remain here
-  }, []);
-
-  function submitRating(v: number) {
-    setRating(v);
-
-    fetch("/api/ratings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rating: v }),
-    }).catch(() => {
-      // network error ignored
-    });
-  }
-
+export default function HomePage() {
   return (
-    <main style={{ padding: 24 }}>
-      <h1>Around You</h1>
+    <main className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
+      <Card className="w-full max-w-xl">
+        <CardHeader>
+          <CardTitle>Welcome to Around You</CardTitle>
+        </CardHeader>
 
-      <p>Current rating: {rating}</p>
+        <CardContent className="space-y-6">
+          <p className="text-sm text-muted-foreground">
+            Please select how you would like to continue.
+          </p>
 
-      <div style={{ display: "flex", gap: 8 }}>
-        <button onClick={() => submitRating(1)}>Rate 1</button>
-        <button onClick={() => submitRating(2)}>Rate 2</button>
-        <button onClick={() => submitRating(3)}>Rate 3</button>
-        <button onClick={() => submitRating(4)}>Rate 4</button>
-        <button onClick={() => submitRating(5)}>Rate 5</button>
-      </div>
+          <div className="flex flex-col gap-4">
+            <Button asChild size="lg">
+              <a href="/login/guest">Guest Login</a>
+            </Button>
+
+            <Button asChild size="lg" variant="outline">
+              <a href="/login/partner">Partner Login</a>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }

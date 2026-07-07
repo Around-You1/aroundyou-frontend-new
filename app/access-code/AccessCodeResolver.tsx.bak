@@ -1,0 +1,115 @@
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
+import { Loader2, AlertCircle } from "lucide-react";
+import backend from "~backend/client";
+import { Button } from "@/components/ui/button";
+
+export default function AccessCodeResolver() {
+  const { accessCode } = useParams<{ accessCode: string }>();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [status, setStatus] = useState<"resolving" | "error">("resolving");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  useEffect(() => {
+    const resolveCode = async () => {
+      if (!accessCode) {
+        setStatus("error");
+        setErrorMessage("No access code provided");
+        return;
+      }
+
+      try {
+        setStatus("resolving");
+
+        const sanitized = (accessCode || "").replace(/[^A-Za-z0-9]/g, "");
+        const response = await backend.auth.accessCodeLogin({ accessCode: sanitized });
+
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("user", JSON.stringify(response.user));
+
+        toast({ title: "Welcome!", description: `Signed in as ${response.user.email}` });
+
+        if (response.user.profileType === "accommodation") {
+          navigate("/guest-dashboard", { replace: true });
+        } else if (
+          response.user.profileType === "restaurant" ||
+          response.user.profileType === "service" ||
+          response.user.profileType === "attraction"
+        ) {
+          navigate("/partner-dashboard", { replace: true });
+        } else if (response.user.role === "Guest") {
+          navigate("/guest-dashboard", { replace: true });
+        } else if (response.user.role === "Partner") {
+          navigate("/partner-dashboard", { replace: true });
+        } else {
+          navigate("/", { replace: true });
+        }
+      } catch (error: any) {
+        console.error("Access code resolution error:", error);
+        setStatus("error");
+        setErrorMessage(error?.message || "Invalid or expired access code");
+        toast({
+          title: "Access Failed",
+          description: error?.message || "Invalid or expired access code",
+          variant: "destructive",
+        });
+      }
+    };
+
+    resolveCode();
+  }, [accessCode, navigate, toast]);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#AEECE4]/20 to-background flex items-center justify-center p-6">
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-3xl font-bold">Around You</CardTitle>
+          <p className="text-muted-foreground">
+            {status === "resolving" && "Verifying your access code..."}
+            {status === "error" && "Access denied"}
+          </p>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center space-y-6">
+          {status === "resolving" && (
+            <>
+              <Loader2 className="h-16 w-16 animate-spin text-[#AEECE4]" />
+              <div className="text-center space-y-2">
+                <p className="text-sm text-muted-foreground">
+                  Please wait while we verify your access code
+                </p>
+                <p className="text-xs font-mono text-muted-foreground/70">
+                  {accessCode}
+                </p>
+              </div>
+            </>
+          )}
+
+          {status === "error" && (
+            <>
+              <AlertCircle className="h-16 w-16 text-destructive" />
+              <div className="text-center space-y-4">
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold text-foreground">
+                    Unable to Access
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {errorMessage}
+                  </p>
+                </div>
+                <Button
+                  onClick={() => navigate("/login")}
+                  className="w-full bg-[#AEECE4] hover:bg-[#AEECE4]/90 text-black font-semibold"
+                >
+                  Go to Login Page
+                </Button>
+              </div>
+            </>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

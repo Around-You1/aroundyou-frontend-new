@@ -1,0 +1,31 @@
+"use client";
+
+import SplashLogo from "../components/SplashLogo";
+import SplashText from "../components/SplashText";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function SplashPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace("/landing");
+    }, 2000); // 2 seconds splash duration
+
+    return () => clearTimeout(timer);
+  }, [router]);
+
+  return (
+    <div
+      className="min-h-screen flex flex-col items-center justify-center"
+      style={{ background: "#000" }}
+    >
+      <SplashLogo width={200} height={200} />
+
+      <div style={{ marginTop: 20 }}>
+        <SplashText width={240} height={80} />
+      </div>
+    </div>
+  );
+}

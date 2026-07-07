@@ -1,0 +1,26 @@
+export type Toast = { [key: string]: any };
+import React from "react";
+export type ToastProps = {
+  id?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  action?: React.ReactNode;
+};
+
+export const ToastActionElement = (props: any) => {
+  return <div {...props} />;
+};
+ToastActionElement.displayName = "ToastActionElement";
+
+export type ToastActionElementType = typeof ToastActionElement;
+
+export const Toast = (props: any) => <div {...props} />;
+export function ToastTitle(props: any) { return <div {...props} />; }
+export function ToastDescription(props: any) { return <div {...props} />; }
+export function ToastClose(props: any) { return <button {...props} />; }
+export function ToastViewport(props: any) { return <div {...props} />; }
+export function ToastProvider({ children, ...props }: any) { return <div {...props}>{children}</div>; }
+
+export default Toast;
