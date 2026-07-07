@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown, Globe, Mail, Phone, ExternalLink, Music, MapPin, Loader2, Copy, Edit, Trash2, ChevronRight, Search, Plus, X, Download, Printer } from 'app/lib/icons';
 import AddressDropdown from "../components/AddressDropdown";
 import DirectionsDropdown from "../components/DirectionsDropdown";
 import { getAuthenticatedBackend } from "../lib/backend";
@@ -20,7 +21,6 @@ import type { Restaurant } from "~backend/restaurant/types";
 import type { ServiceData } from "~backend/service/types";
 import type { AttractionData } from "~backend/attraction/types";
 import AppLogo from "../components/AppLogo";
-import { Instagram, Twitter, Youtube, Check, Eye, EyeOff, Tag, ChevronDown, Globe, Mail, Phone, ExternalLink, Music, MapPin, Loader2, Copy, Edit, Trash2, ChevronRight, Search, Plus, X, Download, Printer } from "@/components/ui/icons"
 
 const FALLBACK = "The company has opted not to make this information visible.";
 

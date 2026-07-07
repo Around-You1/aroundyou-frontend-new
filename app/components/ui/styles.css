@@ -1,6 +1,0 @@
-﻿/* Minimal utility styles used by the UI components. If you use Tailwind, these are optional. */
-:root {
-  --bg: #ffffff;
-  --muted: #6b7280;
-}
-body { background: var(--bg); color: #111827; }
