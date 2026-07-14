@@ -16,7 +16,7 @@ import type { Accommodation } from "~backend/accommodation/types";
 import { useToast } from "@/components/ui/use-toast";
 import ImageUpload from "./ImageUpload";
 import ProfileReferenceCodeDisplay from "./ProfileReferenceCodeDisplay";
-import { SA_PROVINCES } from "../lib/saRegions";
+import { SA_PROVINCES } from "../../lib/saRegions";
 
 const MAX_IMAGES = 10;
 
