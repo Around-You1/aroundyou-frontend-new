@@ -1,1 +1,41 @@
-﻿{ "compilerOptions": { "target": "ES2022", "lib": ["DOM","DOM.Iterable","ES2022"], "allowJs": false, "skipLibCheck": true, "strict": false, "forceConsistentCasingInFileNames": true, "noEmit": true, "esModuleInterop": true, "module": "ESNext", "moduleResolution": "node", "resolveJsonModule": true, "isolatedModules": true, "jsx": "preserve", "incremental": true, "baseUrl": ".", "paths": { "@/*": ["app/*"], "~backend/*": ["src/types/*"] }, "plugins": [{ "name": "next" }] }, "include": ["next-env.d.ts","global.d.ts",".next/types/**/*.ts","app/**/*","src/**/*","**/*.ts","**/*.tsx"], "exclude": ["node_modules"] }
+﻿{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+
+    // ⭐ CRITICAL FIX ⭐
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "~backend/*": ["src/types/*"]
+    },
+
+    "plugins": [
+      { "name": "next" }
+    ]
+  },
+
+  "include": [
+    "next-env.d.ts",
+    "global.d.ts",
+    ".next/types/**/*.ts",
+    "app/**/*",
+    "src/**/*",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+
+  "exclude": ["node_modules"]
+}
