@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { getAuthenticatedBackend } from "../lib/backend";
+import { getAuthenticatedBackend } from "../../lib/backend";
 import type { Accommodation } from "~backend/accommodation/types";
 import { useToast } from "@/components/ui/use-toast";
 import ImageUpload from "./ImageUpload";
